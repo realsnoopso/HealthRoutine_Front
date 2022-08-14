@@ -3,6 +3,7 @@ import { Global } from '@emotion/react';
 import { globalStyles } from '@src/styles/globalStyles';
 import { ThemeProvider } from '@emotion/react';
 import Head from 'next/head';
+import { Navbar } from '@src/components/organisms/Navbar';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -19,6 +20,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           rel="stylesheet"
         />
       </Head>
+      <Navbar />
       <Component {...pageProps} />
     </>
   );

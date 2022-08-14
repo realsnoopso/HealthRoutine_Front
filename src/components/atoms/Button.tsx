@@ -24,7 +24,7 @@ export function Button(props: Button) {
 
 const StyledRoot = styled.button`
   background-color: ${theme.colors.primary};
-  color: ${theme.colors.text};
+  color: ${theme.colors.btnText};
   display: flex;
   align-items: center;
   justify-content: center;
