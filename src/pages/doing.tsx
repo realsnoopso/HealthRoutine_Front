@@ -4,8 +4,8 @@ import { Cycle } from '@src/components/templates/Cycle';
 const Doing: NextPage = () => {
   return (
     <Cycle btnIcon="play_arrow" btnPath="rest">
-      <h3>쉬는 시간</h3>
-      <h1>00:00</h1>
+      <h3>힙 아브덕션 이너타이</h3>
+      <h1>1세트</h1>
     </Cycle>
   );
 };
