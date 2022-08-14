@@ -1,6 +1,7 @@
 import type { AppProps } from 'next/app';
 import { Global } from '@emotion/react';
 import { globalStyles } from '@src/styles/globalStyles';
+import { ThemeProvider } from '@emotion/react';
 import Head from 'next/head';
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -12,6 +13,10 @@ function MyApp({ Component, pageProps }: AppProps) {
           rel="stylesheet"
           as="style"
           href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.5/dist/web/static/pretendard.css"
+        />
+        <link
+          href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet"
         />
       </Head>
       <Component {...pageProps} />
