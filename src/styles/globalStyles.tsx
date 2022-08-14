@@ -70,6 +70,9 @@ export const globalStyles = css`
 
   input {
     font-size: ${theme.fontSize.input};
+    &::placeholder {
+      color: ${theme.colors.placeholder};
+    }
   }
 
   #root,

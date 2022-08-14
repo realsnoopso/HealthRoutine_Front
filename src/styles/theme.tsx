@@ -4,6 +4,7 @@ const colors = {
   btnText: 'white',
   background: 'white',
   border: 'rgba(0,0,0,0.2)',
+  placeholder: 'rgba(0,0,0,0.4)',
 };
 
 const fontSize = {
