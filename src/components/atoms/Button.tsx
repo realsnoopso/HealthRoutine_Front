@@ -6,14 +6,15 @@ interface Button extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   _onClick?: () => void;
   shape?: 'round' | 'square';
   icon?: string;
+  style?: any;
 }
 
 export function Button(props: Button) {
-  const { children, _onClick, shape, icon } = props;
+  const { children, _onClick, shape, icon, style } = props;
 
   return (
     <StyledRoot
-      className={`${shape === 'round' ? 'round' : 'squre'}`}
+      className={`${style} ${shape === 'round' ? 'round' : 'squre'}`}
       onClick={_onClick}
     >
       <span className="material-icons">{icon}</span>

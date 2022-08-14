@@ -4,20 +4,11 @@ import { css } from '@emotion/css';
 interface ActionButton extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   _onClick?: () => void;
   icon?: string;
+  style?: any;
 }
 
 export function ActionButton(props: ActionButton) {
-  const { _onClick, icon } = props;
+  const { _onClick, icon, style } = props;
 
-  return (
-    <Button
-      className={css`
-        position: absolute;
-        bottom: 56px;
-      `}
-      shape="round"
-      icon={icon}
-      _onClick={_onClick}
-    />
-  );
+  return <Button style={style} shape="round" icon={icon} _onClick={_onClick} />;
 }

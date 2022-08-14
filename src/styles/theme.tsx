@@ -3,6 +3,7 @@ const colors = {
   text: 'black',
   btnText: 'white',
   background: 'white',
+  border: 'black',
 };
 
 const theme = { colors };

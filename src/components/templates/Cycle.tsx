@@ -17,6 +17,7 @@ export function Cycle(props: Cycle) {
     <div className={style}>
       {children}
       <ActionButton
+        style={buttonStyle}
         icon={btnIcon}
         _onClick={
           btnPath
@@ -36,9 +37,9 @@ const style = css`
   justify-content: center;
   align-items: center;
   height: 100vh;
+`;
 
-  button {
-    position: absolute;
-    bottom: 56px;
-  }
+const buttonStyle = css`
+  position: absolute;
+  bottom: 56px;
 `;
