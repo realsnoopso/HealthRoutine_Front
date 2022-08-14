@@ -9,4 +9,10 @@ export function Button(props: Button) {
   return <StyledRoot>{children}</StyledRoot>;
 }
 
-const StyledRoot = styled.button``;
+const StyledRoot = styled.button`
+  padding: 24px;
+  min-width: 160px;
+  background-color: black;
+  color: white;
+  border-radius: 20px;
+`;
