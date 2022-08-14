@@ -4,8 +4,10 @@ import { globalStyles } from '@src/styles/globalStyles';
 import { ThemeProvider } from '@emotion/react';
 import Head from 'next/head';
 import { Navbar } from '@src/components/organisms/Navbar';
+import { useRouter } from 'next/router';
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const { asPath } = useRouter();
   return (
     <>
       <Global styles={globalStyles} />
@@ -20,7 +22,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           rel="stylesheet"
         />
       </Head>
-      <Navbar />
+      {asPath === '/' ? null : <Navbar />}
       <Component {...pageProps} />
     </>
   );
