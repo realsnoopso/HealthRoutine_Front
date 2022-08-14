@@ -1,13 +1,17 @@
 import styled from '@emotion/styled';
 import theme from '@src/styles/theme';
+import { useRouter } from 'next/router';
 
 interface Navbar {}
 
 export function Navbar(props: Navbar) {
+  const router = useRouter();
   return (
     <StyledRoot>
       <span className="timer">00:00</span>
-      <span className="material-icons">power_settings_new</span>
+      <button onClick={() => router.push('/')}>
+        <span className="material-icons">power_settings_new</span>
+      </button>
     </StyledRoot>
   );
 }

@@ -46,6 +46,7 @@ export const globalStyles = css`
   select {
     font: inherit;
     border: none;
+    background: none;
   }
 
   p,
@@ -56,6 +57,14 @@ export const globalStyles = css`
   h5,
   h6 {
     overflow-wrap: break-word;
+  }
+
+  h1 {
+    font-size: 64px;
+  }
+
+  h3 {
+    font-size: 36px;
   }
 
   #root,
