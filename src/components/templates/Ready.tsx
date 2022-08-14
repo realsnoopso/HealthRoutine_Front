@@ -7,13 +7,13 @@ export function Ready(props: Ready) {
   const router = useRouter();
 
   return (
-    <div className={style}>
+    <div className={styleRoot}>
       <h1>운동을 시작합니다</h1>
     </div>
   );
 }
 
-const style = css`
+const styleRoot = css`
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -7,14 +7,15 @@ interface Cycle {
   btnPath?: string;
   _onClick?: () => void;
   btnIcon?: string;
+  style?: any;
 }
 
 export function Cycle(props: Cycle) {
   const router = useRouter();
-  const { children, _onClick, btnIcon, btnPath } = props;
+  const { children, _onClick, btnIcon, btnPath, style } = props;
 
   return (
-    <div className={style}>
+    <div className={`${styleRoot} ${style}`}>
       {children}
       <ActionButton
         style={buttonStyle}
@@ -31,12 +32,13 @@ export function Cycle(props: Cycle) {
   );
 }
 
-const style = css`
+const styleRoot = css`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  padding-bottom: 48px;
 `;
 
 const buttonStyle = css`

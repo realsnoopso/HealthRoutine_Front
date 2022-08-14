@@ -1,4 +1,5 @@
 import { css } from '@emotion/react';
+import theme from '@src/styles/theme';
 
 export const globalStyles = css`
   html,
@@ -60,11 +61,15 @@ export const globalStyles = css`
   }
 
   h1 {
-    font-size: 64px;
+    font-size: ${theme.fontSize.h1};
   }
 
   h3 {
-    font-size: 36px;
+    font-size: ${theme.fontSize.h3};
+  }
+
+  input {
+    font-size: ${theme.fontSize.input};
   }
 
   #root,
