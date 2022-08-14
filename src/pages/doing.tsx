@@ -1,22 +1,13 @@
 import type { NextPage } from 'next';
-import { css } from '@emotion/css';
+import { Cycle } from '@src/components/templates/Cycle';
 
-const Start: NextPage = () => {
+const Doing: NextPage = () => {
   return (
-    <div className={style}>
-      <h1>Start</h1>
-    </div>
+    <Cycle btnIcon="play_arrow" btnPath="rest">
+      <h3>쉬는 시간</h3>
+      <h1>00:00</h1>
+    </Cycle>
   );
 };
 
-export default Start;
-
-const style = css`
-  main {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-`;
+export default Doing;

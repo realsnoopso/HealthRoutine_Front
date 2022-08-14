@@ -1,22 +1,13 @@
 import type { NextPage } from 'next';
-import { css } from '@emotion/css';
+import { Cycle } from '@src/components/templates/Cycle';
 
-const Start: NextPage = () => {
+const Rest: NextPage = () => {
   return (
-    <div className={style}>
-      <h1>Start</h1>
-    </div>
+    <Cycle btnIcon="done" btnPath="doing">
+      <h3>힙 아브덕션 이너타이</h3>
+      <h1>1세트</h1>
+    </Cycle>
   );
 };
 
-export default Start;
-
-const style = css`
-  main {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-`;
+export default Rest;

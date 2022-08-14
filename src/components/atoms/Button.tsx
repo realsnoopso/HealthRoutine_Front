@@ -3,7 +3,7 @@ import theme from '@src/styles/theme';
 
 interface Button extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children?: React.ReactNode;
-  _onClick: () => void;
+  _onClick?: () => void;
   shape?: 'round' | 'square';
   icon?: string;
 }
