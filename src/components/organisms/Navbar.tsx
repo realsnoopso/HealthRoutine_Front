@@ -17,7 +17,7 @@ export function Navbar(props: Navbar) {
 }
 
 const StyledRoot = styled.div`
-  position: absolute;
+  position: fixed;
   width: 100%;
   padding: 24px;
   background-color: ${theme.colors.background};
