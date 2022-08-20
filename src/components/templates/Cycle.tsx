@@ -37,11 +37,11 @@ const styleRoot = css`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 100%;
   padding-bottom: 48px;
 `;
 
 const buttonStyle = css`
-  position: absolute;
-  bottom: 56px;
+  position: fixed;
+  bottom: 32px;
 `;

@@ -31,5 +31,6 @@ const StyledRoot = styled.div`
   }
   .material-icons {
     font-size: 28px;
+    color: ${theme.colors.secondary};
   }
 `;
