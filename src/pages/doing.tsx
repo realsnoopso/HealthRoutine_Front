@@ -8,8 +8,8 @@ const Doing: NextPage = () => {
   const weightInput = useRef();
   const countInput = useRef();
 
-  const [weight, setWeight] = useState(0);
-  const [count, setCount] = useState(0);
+  const [weight, setWeight] = useState('');
+  const [count, setCount] = useState('');
 
   return (
     <Cycle btnIcon="done" btnPath="rest">
