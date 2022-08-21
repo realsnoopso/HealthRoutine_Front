@@ -1,27 +1,26 @@
 import styled from '@emotion/styled';
 import theme from '@src/styles/theme';
 import { css } from '@emotion/css';
+import React, { useState } from 'react';
 
 interface NumberInput {
   type: 'weight' | 'count';
   value: number;
   setValue: (value: number) => void;
   label?: string;
-  placeholder?: string;
+  placeholder: number;
   style?: any;
 }
 
-export function NumberInput(props: NumberInput) {
-  const { label, placeholder, value, setValue, style, type } = props;
+const NumberInput = React.forwardRef((props: NumberInput, ref: any) => {
+  const { label, value, setValue, style, type } = props;
 
   function addValue() {
     setValue(value + typeProp());
   }
 
   function subtractValue() {
-    if (value > 0) {
-      setValue(value - typeProp());
-    }
+    setValue(value - typeProp());
   }
 
   const typeProp = () => {
@@ -51,6 +50,7 @@ export function NumberInput(props: NumberInput) {
           value={value}
           onChange={handleOnchange}
           type="number"
+          ref={ref}
         />
         <button onClick={addValue}>
           <span className="material-icons">add</span>
@@ -58,7 +58,9 @@ export function NumberInput(props: NumberInput) {
       </div>
     </StyledRoot>
   );
-}
+});
+
+export default NumberInput;
 
 const StyledRoot = styled.div`
   color: ${theme.colors.text};

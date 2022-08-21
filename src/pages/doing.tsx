@@ -1,10 +1,13 @@
 import type { NextPage } from 'next';
 import { Cycle } from '@src/components/templates/Cycle';
-import { NumberInput } from '@src/components/molecules/NumberInput';
+import NumberInput from '@src/components/molecules/NumberInput';
 import { css } from '@emotion/css';
-import { useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 
 const Doing: NextPage = () => {
+  const weightInput = useRef();
+  const countInput = useRef();
+
   const [weight, setWeight] = useState(0);
   const [count, setCount] = useState(0);
 
@@ -13,8 +16,10 @@ const Doing: NextPage = () => {
       <h3>힙 아브덕션 이너타이</h3>
       <h1>1세트</h1>
       <NumberInput
+        ref={weightInput}
         label="무게 (kg)"
         type="weight"
+        placeholder={0}
         value={weight}
         setValue={setWeight}
         style={css`
@@ -23,8 +28,10 @@ const Doing: NextPage = () => {
         `}
       />
       <NumberInput
+        ref={countInput}
         label="횟수"
         type="count"
+        placeholder={0}
         value={count}
         setValue={setCount}
       />
