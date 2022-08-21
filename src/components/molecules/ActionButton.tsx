@@ -1,5 +1,6 @@
-import { Button } from '@src/components/atoms/Button';
+import Button from '@src/components/atoms/Button';
 import { css } from '@emotion/css';
+import React from 'react';
 
 interface ActionButton extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   _onClick?: () => void;
@@ -7,8 +8,18 @@ interface ActionButton extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   style?: any;
 }
 
-export function ActionButton(props: ActionButton) {
+const ActionButton = React.forwardRef((props: ActionButton, ref: any) => {
   const { _onClick, icon, style } = props;
 
-  return <Button style={style} shape="round" icon={icon} _onClick={_onClick} />;
-}
+  return (
+    <Button
+      ref={ref}
+      style={style}
+      shape="round"
+      icon={icon}
+      _onClick={_onClick}
+    />
+  );
+});
+
+export default ActionButton;

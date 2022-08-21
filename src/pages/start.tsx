@@ -1,5 +1,5 @@
 import type { NextPage } from 'next';
-import { Cycle } from '@src/components/templates/Cycle';
+import Cycle from '@src/components/templates/Cycle';
 
 const Start: NextPage = () => {
   return (

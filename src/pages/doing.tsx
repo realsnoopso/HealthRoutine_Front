@@ -1,5 +1,5 @@
 import type { NextPage } from 'next';
-import { Cycle } from '@src/components/templates/Cycle';
+import Cycle from '@src/components/templates/Cycle';
 import NumberInput from '@src/components/molecules/NumberInput';
 import { css } from '@emotion/css';
 import { useRef, useState, useEffect } from 'react';

@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import { css } from '@emotion/css';
-import { Button } from '@src/components/atoms/Button';
+import Button from '@src/components/atoms/Button';
 import { useRouter } from 'next/router';
 import { Ready } from '@src/components/templates/Ready';
 import { useState } from 'react';

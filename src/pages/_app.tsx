@@ -2,7 +2,7 @@ import type { AppProps } from 'next/app';
 import { Global } from '@emotion/react';
 import { globalStyles } from '@src/styles/globalStyles';
 import Head from 'next/head';
-import { Navbar } from '@src/components/organisms/Navbar';
+import Navbar from '@src/components/organisms/Navbar';
 import { useRouter } from 'next/router';
 import { css } from '@emotion/css';
 import { useState, useEffect } from 'react';

@@ -1,6 +1,7 @@
 import { css } from '@emotion/css';
 import { useRouter } from 'next/router';
-import { ActionButton } from '@src/components/molecules/ActionButton';
+import React from 'react';
+import ActionButton from '@src/components/molecules/ActionButton';
 
 interface Cycle {
   children: React.ReactNode;
@@ -10,7 +11,7 @@ interface Cycle {
   style?: any;
 }
 
-export function Cycle(props: Cycle) {
+const Cycle = React.forwardRef((props: Cycle, ref: any) => {
   const router = useRouter();
   const { children, _onClick, btnIcon, btnPath, style } = props;
 
@@ -18,6 +19,7 @@ export function Cycle(props: Cycle) {
     <div className={`${styleRoot} ${style}`}>
       {children}
       <ActionButton
+        ref={ref}
         style={buttonStyle}
         icon={btnIcon}
         _onClick={
@@ -30,7 +32,9 @@ export function Cycle(props: Cycle) {
       />
     </div>
   );
-}
+});
+
+export default Cycle;
 
 const styleRoot = css`
   display: flex;

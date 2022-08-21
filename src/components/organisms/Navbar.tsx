@@ -6,7 +6,7 @@ import { runSetCount, makeTimer } from '@src/services/makeTimer';
 
 interface Navbar {}
 
-export function Navbar(props: Navbar) {
+export default function Navbar(props: Navbar) {
   const router = useRouter();
 
   const [count, setCount] = useState(0);

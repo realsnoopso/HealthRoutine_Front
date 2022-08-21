@@ -1,5 +1,6 @@
-import styled from '@emotion/styled';
+import { css } from '@emotion/css';
 import theme from '@src/styles/theme';
+import React, { useEffect } from 'react';
 
 interface Button extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children?: React.ReactNode;
@@ -9,21 +10,31 @@ interface Button extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   style?: any;
 }
 
-export function Button(props: Button) {
+const Button = React.forwardRef((props: Button, ref: any) => {
   const { children, _onClick, shape, icon, style } = props;
+  const [disabled, setDisabled] = React.useState(false);
+  const buttonDomDisabled = ref?.current?.disabled;
+
+  useEffect(() => {
+    setDisabled(buttonDomDisabled);
+  }, [buttonDomDisabled]);
 
   return (
-    <StyledRoot
-      className={`${style} ${shape === 'round' ? 'round' : 'squre'}`}
-      onClick={_onClick}
+    <button
+      ref={ref}
+      className={
+        styleRoot + ` ${style} ${shape === 'round' ? 'round' : 'squre'}`
+      }
+      onClick={disabled ? () => {} : _onClick}
     >
       <span className="material-icons">{icon}</span>
       {children}
-    </StyledRoot>
+    </button>
   );
-}
+});
+export default Button;
 
-const StyledRoot = styled.button`
+const styleRoot = css`
   background-color: ${theme.colors.primary};
   color: ${theme.colors.btnText};
   display: flex;
@@ -44,5 +55,9 @@ const StyledRoot = styled.button`
 
   .material-icons {
     font-size: 56px;
+  }
+
+  &:disabled {
+    opacity: 0.3;
   }
 `;
