@@ -4,31 +4,37 @@ const runSetCount = (count: number, setCount: (count: number) => void) => {
   }, 1000);
 };
 
-const makeTimer = (count: number) => {
-  const hour = Math.floor(count / 3600);
-  const min = Math.floor(count / 60);
-  const sec = count;
-  return `${turnToTime(hour)}:${turnToTime(min)}:${turnToTime(sec)}`;
+const makeTimer = (count: number, format: string) => {
+  const hour = turnToTime(Math.floor(count / 3600));
+  const min = turnToTime(Math.floor(count / 60));
+  const sec = turnToTime(count);
+  if (format === 'h:m:s') {
+    return `${hour}:${min}:${sec}`;
+  }
+  if (format === 'm:s') {
+    return `${min}:${sec}`;
+  }
 };
 
-const makeMinutesTimer = (count: number) => {
-  const min = Math.floor(count / 60);
-  const sec = count;
-  return `${turnToTime(min)}:${turnToTime(sec)}`;
+export { runSetCount, makeTimer };
+
+const convertToMinWhenExceeding60Secs = (timeInSecs: number) => {
+  if (timeInSecs % 60 < 10) {
+    return renderOneDigitSec(timeInSecs);
+  }
+  return timeInSecs % 60;
 };
 
-export { runSetCount, makeTimer, makeMinutesTimer };
+const renderOneDigitSec = (timeInSecs: number) => {
+  return '0' + (timeInSecs % 60);
+};
 
-const turnToTime = (number: number) => {
-  // 여기를 더 깔끔하게 작성할 수 있을까?
-  if (number >= 60) {
-    if (number % 60 < 10) {
-      return '0' + (number % 60);
-    }
-    return number % 60;
+const turnToTime = (timeInSecs: number) => {
+  if (timeInSecs >= 60) {
+    return convertToMinWhenExceeding60Secs(timeInSecs);
   }
-  if (number < 10) {
-    return '0' + number;
+  if (timeInSecs % 60 < 10) {
+    return renderOneDigitSec(timeInSecs);
   }
-  return number;
+  return timeInSecs;
 };

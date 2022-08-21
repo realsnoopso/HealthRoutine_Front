@@ -17,7 +17,7 @@ export function Navbar(props: Navbar) {
 
   return (
     <StyledRoot>
-      <span className="timer">{makeTimer(count)}</span>
+      <span className="timer">{makeTimer(count, 'h:m:s')}</span>
       <button onClick={() => router.push('/')}>
         <span className="material-icons">power_settings_new</span>
       </button>

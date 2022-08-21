@@ -3,14 +3,37 @@ import theme from '@src/styles/theme';
 import { css } from '@emotion/css';
 
 interface NumberInput {
+  type: 'weight' | 'count';
+  value: number;
+  setValue: (value: number) => void;
   label?: string;
   placeholder?: string;
-  value?: string;
   style?: any;
 }
 
 export function NumberInput(props: NumberInput) {
-  const { label, placeholder, value, style } = props;
+  const { label, placeholder, value, setValue, style, type } = props;
+
+  function addValue() {
+    setValue(value + typeProp());
+  }
+
+  function subtractValue() {
+    if (value > 0) {
+      setValue(value - typeProp());
+    }
+  }
+
+  const typeProp = () => {
+    if (type === 'weight') {
+      return 5;
+    }
+    return 1;
+  };
+
+  function handleOnchange(e: React.ChangeEvent<HTMLInputElement>) {
+    setValue(Number(e.target.value));
+  }
 
   return (
     <StyledRoot
@@ -20,11 +43,16 @@ export function NumberInput(props: NumberInput) {
     >
       <label>{label}</label>
       <div className="container">
-        <button>
+        <button onClick={subtractValue}>
           <span className="material-icons">remove</span>
         </button>
-        <input placeholder="0" value={value} type="number" />
-        <button>
+        <input
+          placeholder="0"
+          value={value}
+          onChange={handleOnchange}
+          type="number"
+        />
+        <button onClick={addValue}>
           <span className="material-icons">add</span>
         </button>
       </div>
