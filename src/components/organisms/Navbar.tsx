@@ -1,14 +1,23 @@
 import styled from '@emotion/styled';
 import theme from '@src/styles/theme';
 import { useRouter } from 'next/router';
+import { useState, useEffect } from 'react';
+import { runSetCount, makeTimer } from '@src/services/makeTimer';
 
 interface Navbar {}
 
 export function Navbar(props: Navbar) {
   const router = useRouter();
+
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    runSetCount(count, setCount);
+  }, [count]);
+
   return (
     <StyledRoot>
-      <span className="timer">00:00</span>
+      <span className="timer">{makeTimer(count)}</span>
       <button onClick={() => router.push('/')}>
         <span className="material-icons">power_settings_new</span>
       </button>

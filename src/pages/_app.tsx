@@ -1,13 +1,15 @@
 import type { AppProps } from 'next/app';
 import { Global } from '@emotion/react';
 import { globalStyles } from '@src/styles/globalStyles';
-import { ThemeProvider } from '@emotion/react';
 import Head from 'next/head';
 import { Navbar } from '@src/components/organisms/Navbar';
 import { useRouter } from 'next/router';
+import { css } from '@emotion/css';
+import { useState, useEffect } from 'react';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const { asPath } = useRouter();
+
   return (
     <>
       <Global styles={globalStyles} />
@@ -22,6 +24,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           rel="stylesheet"
         />
       </Head>
+
       {asPath === '/' ? null : <Navbar />}
       <Component {...pageProps} />
     </>
@@ -29,3 +32,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 }
 
 export default MyApp;
+
+const styleRoot = css`
+  height: 100%;
+`;

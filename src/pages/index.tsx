@@ -40,6 +40,7 @@ const Home: NextPage = () => {
 export default Home;
 
 const styleRoot = css`
+  height: 100vh;
   main {
     display: flex;
     flex-direction: column;
