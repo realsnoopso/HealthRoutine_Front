@@ -13,17 +13,17 @@ const Doing: NextPage = () => {
   const weightInput = useRef();
   const countInput = useRef();
 
-  const { order, setOrder } = useGetAndSetOrder();
   const [weight, setWeight] = useState('');
   const [count, setCount] = useState('');
 
+  const { order, setOrder } = useGetAndSetOrder();
+
   function finishRoutine() {
-    setOrder();
     router.push(`/rest`);
   }
 
   return (
-    <Cycle btnIcon="done" _onClick={() => finishRoutine()}>
+    <Cycle btnIcon="done" _onClick={finishRoutine}>
       <h3>{workoutList[order].name}</h3>
       <h1>1세트</h1>
       <NumberInput

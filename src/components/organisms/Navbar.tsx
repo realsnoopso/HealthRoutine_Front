@@ -5,34 +5,29 @@ import { useState, useEffect, useRef, ReactElement } from 'react';
 import { runSetCount, makeTimer } from '@src/services/makeTimer';
 import Drawer from '@src/components/organisms/Drawer';
 
-interface Navbar {}
+interface Navbar {
+  drawerOpenFuc: () => void;
+}
 
 export default function Navbar(props: Navbar) {
+  const { drawerOpenFuc } = props;
   const router = useRouter();
 
   const [count, setCount] = useState(0);
-  const [drawerOpen, setDrawerOpen] = useState(false);
 
   useEffect(() => {
     runSetCount(count, setCount);
   }, [count]);
 
-  const drawerBackdrop: any = useRef();
-
-  drawerBackdrop?.current?.addEventListener('click', () =>
-    setDrawerOpen(false)
-  );
-
   return (
     <StyledRoot>
-      <button onClick={() => setDrawerOpen(true)}>
+      <button onClick={() => drawerOpenFuc()}>
         <span className="material-icons">reorder</span>
       </button>
       <span className="timer">{makeTimer(count, 'h:m:s')}</span>
       <button onClick={() => router.push('/')}>
         <span className="material-icons">power_settings_new</span>
       </button>
-      <Drawer _backdropRef={drawerBackdrop} open={drawerOpen}></Drawer>
     </StyledRoot>
   );
 }

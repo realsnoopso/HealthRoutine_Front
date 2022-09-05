@@ -3,12 +3,19 @@ import { Global } from '@emotion/react';
 import { globalStyles } from '@src/styles/globalStyles';
 import Head from 'next/head';
 import Navbar from '@src/components/organisms/Navbar';
+import Drawer from '@src/components/organisms/Drawer';
 import { useRouter } from 'next/router';
 import { css } from '@emotion/css';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const { asPath } = useRouter();
+  const backdropRef = useRef();
+  const [drawerOpen, setDrawerOpen] = useState(false);
+
+  function drawerFuc() {
+    return setDrawerOpen(!drawerOpen);
+  }
 
   return (
     <>
@@ -25,7 +32,12 @@ function MyApp({ Component, pageProps }: AppProps) {
         />
       </Head>
 
-      {asPath === '/' ? null : <Navbar />}
+      {asPath === '/' ? null : <Navbar drawerOpenFuc={drawerFuc} />}
+      <Drawer
+        backdropRef={backdropRef}
+        drawerCloseFuc={drawerFuc}
+        open={drawerOpen}
+      />
       <Component {...pageProps} />
     </>
   );

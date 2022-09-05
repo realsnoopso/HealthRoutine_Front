@@ -6,16 +6,21 @@ import { workoutList } from '@src/constants/mockData';
 
 interface Drawer {
   open: boolean;
-  _backdropRef: any;
+  backdropRef: any;
+  drawerCloseFuc: () => void;
 }
 
 export default function Drawer(props: Drawer) {
-  const { open, _backdropRef } = props;
+  const { open, backdropRef, drawerCloseFuc } = props;
 
   if (open)
     return (
       <div className={styleRoot}>
-        <div className="backdrop" ref={_backdropRef} />
+        <div
+          className="backdrop"
+          ref={backdropRef}
+          onClick={() => drawerCloseFuc()}
+        />
         <div className="drawer-contents">
           {workoutList.map((v, i) => (
             <DrawerList
