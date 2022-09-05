@@ -4,7 +4,7 @@ import { useGetAndSetOrder } from '@src/constants/workoutOrder';
 import { workoutList } from '@src/constants/mockData';
 
 const Start: NextPage = () => {
-  const order = useGetAndSetOrder();
+  const { order } = useGetAndSetOrder();
 
   return (
     <Cycle btnIcon="play_arrow" btnPath="doing">

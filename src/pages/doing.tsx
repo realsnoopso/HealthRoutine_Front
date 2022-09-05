@@ -13,12 +13,12 @@ const Doing: NextPage = () => {
   const weightInput = useRef();
   const countInput = useRef();
 
-  const order = useGetAndSetOrder();
+  const { order, setOrder } = useGetAndSetOrder();
   const [weight, setWeight] = useState('');
   const [count, setCount] = useState('');
 
   function finishRoutine() {
-    useGetAndSetOrder();
+    setOrder();
     router.push(`/rest`);
   }
 
