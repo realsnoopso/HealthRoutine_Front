@@ -22,4 +22,6 @@ const ActionButton = React.forwardRef((props: ActionButton, ref: any) => {
   );
 });
 
+ActionButton.displayName = 'ActionButton';
+
 export default ActionButton;

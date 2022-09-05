@@ -3,17 +3,28 @@ import Cycle from '@src/components/templates/Cycle';
 import NumberInput from '@src/components/molecules/NumberInput';
 import { css } from '@emotion/css';
 import { useRef, useState, useEffect } from 'react';
+import { useGetAndSetOrder } from '@src/constants/workoutOrder';
+import { workoutList } from '@src/constants/mockData';
+import { useRouter } from 'next/router';
 
 const Doing: NextPage = () => {
+  const router = useRouter();
+
   const weightInput = useRef();
   const countInput = useRef();
 
+  const order = useGetAndSetOrder();
   const [weight, setWeight] = useState('');
   const [count, setCount] = useState('');
 
+  function finishRoutine() {
+    useGetAndSetOrder();
+    router.push(`/rest`);
+  }
+
   return (
-    <Cycle btnIcon="done" btnPath="rest">
-      <h3>힙 아브덕션 이너타이</h3>
+    <Cycle btnIcon="done" _onClick={() => finishRoutine()}>
+      <h3>{workoutList[order].name}</h3>
       <h1>1세트</h1>
       <NumberInput
         ref={weightInput}

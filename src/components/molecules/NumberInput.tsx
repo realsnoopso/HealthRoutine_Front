@@ -20,7 +20,9 @@ const NumberInput = React.forwardRef((props: NumberInput, ref: any) => {
   }
 
   function subtractValue() {
-    setValue(`${Number(value) - typeProp()}`);
+    if (Number(value) > 0) {
+      setValue(`${Number(value) - typeProp()}`);
+    }
   }
 
   const typeProp = () => {
@@ -59,6 +61,8 @@ const NumberInput = React.forwardRef((props: NumberInput, ref: any) => {
     </StyledRoot>
   );
 });
+
+NumberInput.displayName = 'NumberInput';
 
 export default NumberInput;
 

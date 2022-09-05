@@ -34,6 +34,8 @@ const Cycle = React.forwardRef((props: Cycle, ref: any) => {
   );
 });
 
+Cycle.displayName = 'Cycle';
+
 export default Cycle;
 
 const styleRoot = css`

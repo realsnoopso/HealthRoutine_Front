@@ -32,6 +32,8 @@ const Button = React.forwardRef((props: Button, ref: any) => {
     </button>
   );
 });
+Button.displayName = 'Button';
+
 export default Button;
 
 const styleRoot = css`
