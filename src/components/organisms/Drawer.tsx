@@ -1,17 +1,24 @@
 import { css } from '@emotion/css';
-import React from 'react';
+import { useRouter } from 'next/router';
 import DrawerList from '@src/components/molecules/DrawerList';
-import { useState, useEffect } from 'react';
 import { workoutList } from '@src/constants/mockData';
 
 interface Drawer {
   open: boolean;
   backdropRef: any;
-  drawerCloseFuc: () => void;
+  drawerCloseFunc: () => void;
+  closeFunc: () => void;
 }
 
 export default function Drawer(props: Drawer) {
-  const { open, backdropRef, drawerCloseFuc } = props;
+  const router = useRouter();
+
+  const { open, backdropRef, drawerCloseFunc, closeFunc } = props;
+
+  function moveToNextRoutine(id: string, round: number) {
+    router.push(`/doing/${id}/${round}`);
+    closeFunc();
+  }
 
   if (open)
     return (
@@ -19,15 +26,16 @@ export default function Drawer(props: Drawer) {
         <div
           className="backdrop"
           ref={backdropRef}
-          onClick={() => drawerCloseFuc()}
+          onClick={() => drawerCloseFunc()}
         />
         <div className="drawer-contents">
           {workoutList.map((v, i) => (
             <DrawerList
               key={`${v.name}-${i}`}
               name={v.name}
-              totalNumber={v.totalNumber}
-              number={v.number}
+              rounds={v.rounds}
+              totalRounds={v.totalRounds}
+              _onClick={() => moveToNextRoutine(v.id, v.rounds)}
             />
           ))}
         </div>

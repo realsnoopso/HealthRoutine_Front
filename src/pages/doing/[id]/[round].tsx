@@ -9,6 +9,8 @@ import { useRouter } from 'next/router';
 
 const Doing: NextPage = () => {
   const router = useRouter();
+  const { id, round } = router.query;
+  const currentRoutine = workoutList.find((v) => v.id === id);
 
   const weightInput = useRef();
   const countInput = useRef();
@@ -16,16 +18,14 @@ const Doing: NextPage = () => {
   const [weight, setWeight] = useState('');
   const [count, setCount] = useState('');
 
-  const { order, setOrder } = useGetAndSetOrder();
-
   function finishRoutine() {
     router.push(`/rest`);
   }
 
   return (
     <Cycle btnIcon="done" _onClick={finishRoutine}>
-      <h3>{workoutList[order].name}</h3>
-      <h1>1세트</h1>
+      <h3>{currentRoutine?.name}</h3>
+      <h1>{round}세트</h1>
       <NumberInput
         ref={weightInput}
         label="무게 (kg)"

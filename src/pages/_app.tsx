@@ -13,7 +13,11 @@ function MyApp({ Component, pageProps }: AppProps) {
   const backdropRef = useRef();
   const [drawerOpen, setDrawerOpen] = useState(false);
 
-  function drawerFuc() {
+  function closeDrawer() {
+    setDrawerOpen(false);
+  }
+
+  function drawerFunc() {
     return setDrawerOpen(!drawerOpen);
   }
 
@@ -32,11 +36,12 @@ function MyApp({ Component, pageProps }: AppProps) {
         />
       </Head>
 
-      {asPath === '/' ? null : <Navbar drawerOpenFuc={drawerFuc} />}
+      {asPath === '/' ? null : <Navbar drawerOpenFuc={drawerFunc} />}
       <Drawer
         backdropRef={backdropRef}
-        drawerCloseFuc={drawerFuc}
+        drawerCloseFunc={drawerFunc}
         open={drawerOpen}
+        closeFunc={closeDrawer}
       />
       <Component {...pageProps} />
     </>

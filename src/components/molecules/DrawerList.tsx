@@ -4,22 +4,22 @@ import theme from '@src/styles/theme';
 interface DrawerList {
   _onClick?: () => void;
   name: string;
-  number: number;
-  totalNumber: number;
+  rounds: number;
+  totalRounds: number;
 }
 
 export default function DrawerList(props: DrawerList) {
-  const { _onClick, name, number, totalNumber } = props;
+  const { _onClick, name, rounds, totalRounds } = props;
 
   return (
     <div className={styleRoot} onClick={_onClick}>
       <div className="listContents">
         <h5>{name}</h5>
         <p>
-          {number}/{totalNumber} 세트
+          {rounds}/{totalRounds} 세트
         </p>
       </div>
-      {number === totalNumber ? (
+      {rounds === totalRounds ? (
         <span className="material-icons">done</span>
       ) : (
         ''
