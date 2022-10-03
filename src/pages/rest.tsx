@@ -22,7 +22,7 @@ const Rest: NextPage = () => {
     actionButton.current.disabled = true;
   }, []);
 
-  if (count === 10) {
+  if (count > 1) {
     actionButton.current.disabled = false;
   }
 

@@ -3,7 +3,6 @@ import Cycle from '@src/components/templates/Cycle';
 import NumberInput from '@src/components/molecules/NumberInput';
 import { css } from '@emotion/css';
 import { useRef, useState, useEffect } from 'react';
-import { useGetAndSetOrder } from '@src/constants/workoutOrder';
 import { workoutList } from '@src/constants/mockData';
 import { useRouter } from 'next/router';
 
@@ -19,6 +18,27 @@ const Doing: NextPage = () => {
   const [count, setCount] = useState('');
 
   function finishRoutine() {
+    const prevResult = window.localStorage.getItem('result');
+    const _prevResult = prevResult ? JSON.parse(prevResult) : null;
+    const score = prevResult
+      ? [
+          ..._prevResult,
+          {
+            id: id,
+            round: round,
+            weight: weight,
+            count: count,
+          },
+        ]
+      : [
+          {
+            id: id,
+            round: round,
+            weight: weight,
+            count: count,
+          },
+        ];
+    window.localStorage.setItem('result', JSON.stringify(score));
     router.push(`/rest`);
   }
 
