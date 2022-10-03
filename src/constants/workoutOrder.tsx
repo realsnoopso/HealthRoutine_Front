@@ -11,7 +11,6 @@ export function useGetAndSetOrder() {
     order: order,
     setOrder: () => {
       setOrder(order + 1);
-      console.log(order);
     },
     resetOrder: () => {
       setOrder(0);

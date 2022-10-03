@@ -8,8 +8,9 @@ import { useRouter } from 'next/router';
 
 const Doing: NextPage = () => {
   const router = useRouter();
-  const { id, round } = router.query;
-  const currentRoutine = workoutList.find((v) => v.id === id);
+  const { index, round } = router.query;
+
+  const name = workoutList[Number(index)]?.name;
 
   const weightInput = useRef();
   const countInput = useRef();
@@ -18,33 +19,12 @@ const Doing: NextPage = () => {
   const [count, setCount] = useState('');
 
   function finishRoutine() {
-    const prevResult = window.localStorage.getItem('result');
-    const _prevResult = prevResult ? JSON.parse(prevResult) : null;
-    const score = prevResult
-      ? [
-          ..._prevResult,
-          {
-            id: id,
-            round: round,
-            weight: weight,
-            count: count,
-          },
-        ]
-      : [
-          {
-            id: id,
-            round: round,
-            weight: weight,
-            count: count,
-          },
-        ];
-    window.localStorage.setItem('result', JSON.stringify(score));
-    router.push(`/rest`);
+    router.push(`/rest/${index}/${round}`);
   }
 
   return (
     <Cycle btnIcon="done" _onClick={finishRoutine}>
-      <h3>{currentRoutine?.name}</h3>
+      <h3>{name}</h3>
       <h1>{round}세트</h1>
       <NumberInput
         ref={weightInput}

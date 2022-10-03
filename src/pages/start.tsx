@@ -8,37 +8,31 @@ import { useEffect } from 'react';
 const Start: NextPage = () => {
   const router = useRouter();
 
-  interface MetaData {
-    id: string;
-    round: number;
-    index: number;
-  }
-
-  let metaData: MetaData = {
+  let metaData = {
     id: '',
     round: 1,
     index: 0,
   };
 
   useEffect(() => {
-    const { id, round, index } = getCurrentRoutineInfo();
-
-    metaData.id = id;
-    metaData.round = round;
-    metaData.index = index;
+    (async () => {
+      try {
+        const { index, round } = await getCurrentRoutineInfo();
+        metaData.index = index;
+        metaData.round = round;
+      } catch (err) {
+        console.error(err);
+      }
+    })();
   }, []);
 
   function stratNextRound() {
-    window.localStorage.setItem('currId', `${metaData.id}`);
-    window.localStorage.setItem('currRound', `${metaData.round}`);
-    window.localStorage.setItem('currIndex', `${metaData.index}`);
-
-    router.push(`/doing/${metaData.id}/${metaData.round}`);
+    router.push(`/doing/${metaData.index}/${metaData.round}`);
   }
 
   return (
     <Cycle btnIcon="play_arrow" _onClick={stratNextRound}>
-      <h3>{metaData.index}</h3>
+      <h3>{workoutList[metaData.index].name}</h3>
       <h1>시작</h1>
     </Cycle>
   );
