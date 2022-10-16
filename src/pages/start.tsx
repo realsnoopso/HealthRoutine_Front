@@ -8,31 +8,17 @@ import { useEffect } from 'react';
 const Start: NextPage = () => {
   const router = useRouter();
 
-  let metaData = {
-    id: '',
-    round: 1,
-    index: 0,
-  };
+  const { index, round } = getCurrentRoutineInfo()
+   
 
-  useEffect(() => {
-    (async () => {
-      try {
-        const { index, round } = await getCurrentRoutineInfo();
-        metaData.index = index;
-        metaData.round = round;
-      } catch (err) {
-        console.error(err);
-      }
-    })();
-  }, []);
 
   function stratNextRound() {
-    router.push(`/doing/${metaData.index}/${metaData.round}`);
+    router.push(`/doing/${index}/${round}`);
   }
 
   return (
     <Cycle btnIcon="play_arrow" _onClick={stratNextRound}>
-      <h3>{workoutList[metaData.index].name}</h3>
+      <h3>{workoutList[index].name}</h3>
       <h1>시작</h1>
     </Cycle>
   );

@@ -39,7 +39,7 @@ const Rest: NextPage = () => {
     actionButton.current.disabled = true;
   }, []);
 
-  useEffect(() => {
+  useEffect(() => {  
     window.localStorage.setItem('currIndex', `${metaData.index}`);
     window.localStorage.setItem('currRound', `${metaData.round}`);
   });
