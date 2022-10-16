@@ -3,7 +3,7 @@ import Cycle from '@src/components/templates/Cycle';
 import { workoutList } from '@src/constants/mockData';
 import { getCurrentRoutineInfo } from '@src/services/getCurrentInfo';
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+
 
 const Start: NextPage = () => {
   const router = useRouter();

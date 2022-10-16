@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { getCurrentRoutineInfo } from '@src/services/getCurrentInfo';
-import { workoutList } from '@src/constants/mockData';
 
 export function useGetAndSetOrder() {
   const [order, setOrder] = useState(0);
