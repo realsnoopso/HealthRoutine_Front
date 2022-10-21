@@ -1,14 +1,19 @@
 import type { NextPage } from 'next';
 import Cycle from '@src/components/templates/Cycle';
 import { workoutList } from '@src/constants/mockData';
-import { getCurrentRoutineInfo } from '@src/services/getCurrentInfo';
 import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 
 const Start: NextPage = () => {
   const router = useRouter();
-  const index = Number(window.localStorage.getItem('currIndex')) ?? 0;
-  const round = Number(window.localStorage.getItem('currRound')) ?? 1;
-
+  let index:number;
+  let round:number;
+  
+  useEffect(()=> {
+    index = Number(window.localStorage.getItem('currIndex')) ?? 0;
+    round = Number(window.localStorage.getItem('currRound')) ?? 1;
+  },[])
+  
   function stratNextRound() {
     router.push(`/doing/${index}/${round}`);
   }
