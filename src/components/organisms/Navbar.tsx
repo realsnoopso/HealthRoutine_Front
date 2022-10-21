@@ -3,8 +3,7 @@ import theme from '@src/styles/theme';
 import { useRouter } from 'next/router';
 import { useState, useEffect, useRef, ReactElement } from 'react';
 import { runSetCount, makeTimer } from '@src/services/makeTimer';
-import Drawer from '@src/components/organisms/Drawer';
-
+import { resetData } from '@src/services/resetData';
 interface Navbar {
   drawerOpenFuc: () => void;
 }
@@ -19,13 +18,18 @@ export default function Navbar(props: Navbar) {
     runSetCount(count, setCount);
   }, [count]);
 
+  function quitRoutines() {
+    resetData()
+    router.push('/')
+  }
+
   return (
     <StyledRoot>
       <button onClick={() => drawerOpenFuc()}>
         <span className="material-icons">reorder</span>
       </button>
       <span className="timer">{makeTimer(count, 'h:m:s')}</span>
-      <button onClick={() => router.push('/')}>
+      <button onClick={quitRoutines}>
         <span className="material-icons">power_settings_new</span>
       </button>
     </StyledRoot>

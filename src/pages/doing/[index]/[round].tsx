@@ -29,9 +29,7 @@ const Doing: NextPage = () => {
   })()
 
   function finishRoutine() {
-    console.log(isWorkoutFinished)
     if (isWorkoutFinished) {
-      debugger;
       return router.push(`/done`);
     }
     router.push(`/rest/${index}/${round}`);
