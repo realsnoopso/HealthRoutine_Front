@@ -1,10 +1,9 @@
 import type { NextPage } from 'next';
-import Cycle from '@src/components/templates/Cycle';
 import { useState, useEffect, useRef } from 'react';
 import { runSetCount, makeTimer } from '@src/services/makeTimer';
 import { workoutList } from '@src/constants/mockData';
-
 import { useRouter } from 'next/router';
+import Cycle from '@src/components/templates/Cycle';
 
 const Rest: NextPage = () => {
   const [count, setCount] = useState(0);

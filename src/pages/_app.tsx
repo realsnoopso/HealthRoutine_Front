@@ -6,8 +6,7 @@ import Navbar from '@src/components/organisms/Navbar';
 import Drawer from '@src/components/organisms/Drawer';
 import { useRouter } from 'next/router';
 import { css } from '@emotion/css';
-import { useState, useEffect, useRef } from 'react';
-import { getCurrentRoutineInfo } from '@src/services/getCurrentInfo';
+import { useState, useRef } from 'react';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const { asPath } = useRouter();
@@ -50,7 +49,3 @@ function MyApp({ Component, pageProps }: AppProps) {
 }
 
 export default MyApp;
-
-const styleRoot = css`
-  height: 100%;
-`;

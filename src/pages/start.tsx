@@ -4,13 +4,9 @@ import { workoutList } from '@src/constants/mockData';
 import { getCurrentRoutineInfo } from '@src/services/getCurrentInfo';
 import { useRouter } from 'next/router';
 
-
 const Start: NextPage = () => {
   const router = useRouter();
-
   const { index, round } = getCurrentRoutineInfo()
-   
-
 
   function stratNextRound() {
     router.push(`/doing/${index}/${round}`);
