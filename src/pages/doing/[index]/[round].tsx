@@ -18,7 +18,22 @@ const Doing: NextPage = () => {
   const [weight, setWeight] = useState('');
   const [count, setCount] = useState('');
 
+  const isWorkoutFinished = (()=> {
+    const _round = Number(round);
+    const _index = Number(index);
+
+    if (_index === workoutList.length-1 && _round === workoutList[workoutList.length-1]['totalRounds'] ) {      
+      return true
+    }
+    return false
+  })()
+
   function finishRoutine() {
+    console.log(isWorkoutFinished)
+    if (isWorkoutFinished) {
+      debugger;
+      return router.push(`/done`);
+    }
     router.push(`/rest/${index}/${round}`);
   }
 

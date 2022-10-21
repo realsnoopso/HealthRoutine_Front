@@ -12,7 +12,7 @@ const Rest: NextPage = () => {
   const { index, round } = router.query;
 
   const metaData = (() => {
-    const totalRounds = Number(workoutList[Number(index)]['totalRounds']);
+    const totalRounds = Number(workoutList[Number(index)]?.['totalRounds']);
     const _round = Number(round);
     const _index = Number(index);
     if (_round >= totalRounds) {
