@@ -15,7 +15,7 @@ const Start: NextPage = () => {
   },[])
   
   function stratNextRound() {
-    router.push(`/doing/${index}/${round}`);
+    router.push(`/doing/${index}/${round+1}`);
   }
 
   return (
