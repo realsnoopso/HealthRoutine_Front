@@ -39,8 +39,8 @@ const Rest: NextPage = () => {
   }, []);
 
   useEffect(() => {  
-    window.localStorage.setItem('currIndex', `${metaData.index}`);
-    window.localStorage.setItem('currRound', `${metaData.round}`);
+    window?.localStorage.setItem('currIndex', `${metaData.index}`);
+    window?.localStorage.setItem('currRound', `${metaData.round}`);
   });
 
   if (count > 1) {

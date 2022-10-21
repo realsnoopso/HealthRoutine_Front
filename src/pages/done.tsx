@@ -14,6 +14,7 @@ const Start: NextPage = () => {
   return (
     <Cycle btnIcon="play_arrow" _onClick={finishRoutines}>
       <h3>ㅊㅋㅊㅋ 끗</h3>
+      <p>끝난 시간: 1시간 5분 31초</p>
     </Cycle>
   );
 };

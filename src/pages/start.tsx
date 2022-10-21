@@ -6,7 +6,8 @@ import { useRouter } from 'next/router';
 
 const Start: NextPage = () => {
   const router = useRouter();
-  const { index, round } = getCurrentRoutineInfo()
+  const index = Number(window.localStorage.getItem('currIndex')) ?? 0;
+  const round = Number(window.localStorage.getItem('currRound')) ?? 1;
 
   function stratNextRound() {
     router.push(`/doing/${index}/${round}`);
