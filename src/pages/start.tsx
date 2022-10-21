@@ -2,16 +2,16 @@ import type { NextPage } from 'next';
 import Cycle from '@src/components/templates/Cycle';
 import { workoutList } from '@src/constants/mockData';
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 const Start: NextPage = () => {
   const router = useRouter();
-  let index:number;
-  let round:number;
+  const [index, setIndex] = useState(0)
+  const [round, setRound] = useState(1)
   
   useEffect(()=> {
-    index = Number(window.localStorage.getItem('currIndex')) ?? 0;
-    round = Number(window.localStorage.getItem('currRound')) ?? 1;
+    setIndex(Number(window.localStorage.getItem('currIndex')));
+    setRound(Number(window.localStorage.getItem('currRound')));
   },[])
   
   function stratNextRound() {
