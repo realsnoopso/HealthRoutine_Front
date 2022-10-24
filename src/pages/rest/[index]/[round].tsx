@@ -18,12 +18,12 @@ const Rest: NextPage = () => {
     if (_round >= totalRounds) {
       return {
         index: _index + 1,
-        round: 1,
+        round: 0,
       };
     } else {
       return {
         index: _index,
-        round: _round + 1,
+        round: _round,
       };
     }
   })();
@@ -38,10 +38,10 @@ const Rest: NextPage = () => {
     actionButton.current.disabled = true;
   }, []);
 
-  useEffect(() => {  
-    window?.localStorage.setItem('currIndex', `${metaData.index}`);
-    window?.localStorage.setItem('currRound', `${metaData.round}`);
-  });
+  useEffect(() => { 
+    window.localStorage.setItem('currIndex', `${metaData.index}`);
+    window.localStorage.setItem('currRound', `${metaData.round}`);
+  },[]);
 
   if (count > 1) {
     actionButton.current.disabled = false;
