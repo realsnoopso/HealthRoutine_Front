@@ -28,7 +28,7 @@ const Home: NextPage = () => {
           >
             Routines
           </p>
-          <Button _onClick={() => router.push('/start')}>구글로 로그인</Button>
+          <Button _onClick={() => router.push('/ready')}>구글로 로그인</Button>
         </main>
       ) : (
         <Ready />

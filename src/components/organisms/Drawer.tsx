@@ -15,8 +15,8 @@ export default function Drawer(props: Drawer) {
 
   const { open, backdropRef, drawerCloseFunc, closeFunc } = props;
 
-  function moveToNextRoutine(id: string, round: number) {
-    router.push(`/doing/${id}/${round}`);
+  function moveToRoutine(index: number, round: number) {
+    router.push(`/doing/${index}/${round}`);
     closeFunc();
   }
 
@@ -35,7 +35,7 @@ export default function Drawer(props: Drawer) {
               name={v.name}
               rounds={v.rounds}
               totalRounds={v.totalRounds}
-              _onClick={() => moveToNextRoutine(v.id, v.rounds)}
+              _onClick={() => moveToRoutine(i, v.rounds)}
             />
           ))}
         </div>
