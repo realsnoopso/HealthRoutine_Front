@@ -13,11 +13,11 @@ export default function DrawerList(props: DrawerList) {
   const { _onClick, name, rounds, totalRounds } = props;
 
   return (
-    <div className={styleRoot} onClick={_onClick}>
+    <button className={styleRoot} onClick={_onClick} disabled={rounds === totalRounds}>
       <div className="listContents">
         <h5>{name}</h5>
         <p>
-          {rounds}/{totalRounds} 세트
+          {rounds}/{totalRounds} 세트 완료
         </p>
       </div>
       {rounds === totalRounds ? (
@@ -25,7 +25,7 @@ export default function DrawerList(props: DrawerList) {
       ) : (
         ''
       )}
-    </div>
+    </button>
   );
 }
 
@@ -35,6 +35,8 @@ const styleRoot = css`
   align-items: flex-start;
   padding: 16px 24px;
   gap: 15px;
+  width: 100%;
+  text-align: left;
   border-bottom: 1px solid ${theme.colors.divider};
 
   :hover {

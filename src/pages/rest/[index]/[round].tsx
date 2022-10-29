@@ -13,12 +13,6 @@ const Rest: NextPage = () => {
   let index = Number(router.query.index)
   let round = Number(router.query.round)
   const totalRounds = Number(workoutList[index]?.['totalRounds']);
-  
-  if (round >= totalRounds) {
-    index = index + 1;
-    round = 0
-  }
-
   const actionButton: any = useRef();
 
   useEffect(() => {
@@ -27,8 +21,6 @@ const Rest: NextPage = () => {
 
   useEffect(() => {
     actionButton.current.disabled = true;
-    window.localStorage.setItem('currIndex', `${index}`);
-    window.localStorage.setItem('currRound', `${round}`);
   }, []);
 
   if (count > 1) {
@@ -37,8 +29,16 @@ const Rest: NextPage = () => {
 
   function startNewRound() {
     if (index >= workoutList.length) {
-      router.push('/');
+      return router.push('/');
     }
+    if (round >= workoutList[index].totalRounds) {
+      index = index + 1
+      round = 1
+    } else {
+      round = round + 1
+    }
+    window.localStorage.setItem('currIndex', `${index}`)
+    window.localStorage.setItem('currRound', `${round}`)
     router.push('/start');
   }
 

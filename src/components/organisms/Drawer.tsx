@@ -12,12 +12,19 @@ interface Drawer {
 
 export default function Drawer(props: Drawer) {
   const router = useRouter();
-
   const { open, backdropRef, drawerCloseFunc, closeFunc } = props;
-
   function moveToRoutine(index: number, round: number) {
     router.push(`/doing/${index}/${round}`);
     closeFunc();
+  }
+  function getRecordsLength(id:string) {
+    const record = window.localStorage.getItem(id)
+    console.log(record)
+    if (record) {
+      return JSON.parse(record).length
+    } else {
+      return 0
+    }
   }
 
   if (open)
@@ -34,9 +41,9 @@ export default function Drawer(props: Drawer) {
               key={`${v.name}-${i}`}
               name={v.name}
               id={v.id}
-              rounds={v.rounds}
+              rounds={getRecordsLength(v.id)}
               totalRounds={v.totalRounds}
-              _onClick={() => moveToRoutine(i, v.rounds)}
+              _onClick={() => moveToRoutine(i, getRecordsLength(v.id)+1)}
             />
           ))}
         </div>

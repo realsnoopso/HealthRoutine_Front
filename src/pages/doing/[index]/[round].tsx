@@ -12,8 +12,8 @@ const Doing: NextPage = () => {
   let index = Number(router.query.index)
   let round = Number(router.query.round)
   
-  const name = workoutList[index]?.name;
-  const id = workoutList[index]?.id;
+  const name = workoutList[index].name;
+  const id = workoutList[index].id;
 
   const [weight, setWeight] = useState('');
   const [count, setCount] = useState('');
