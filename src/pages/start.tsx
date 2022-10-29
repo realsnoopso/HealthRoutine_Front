@@ -9,9 +9,12 @@ const Start: NextPage = () => {
   const [index, setIndex] = useState(0)
   const [round, setRound] = useState(1)
   
+  
   useEffect(()=> {
-    setIndex(Number(window.localStorage.getItem('currIndex')));
-    setRound(Number(window.localStorage.getItem('currRound')));
+    const currindex = Number(window.localStorage.getItem('currIndex'))
+    currindex && setIndex(currindex)
+    const records = window.localStorage.getItem(workoutList[index].id)
+    records && setRound(JSON.parse(records).length)
   },[])
   
   function stratNextRound() {

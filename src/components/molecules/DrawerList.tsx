@@ -4,6 +4,7 @@ import theme from '@src/styles/theme';
 interface DrawerList {
   _onClick?: () => void;
   name: string;
+  id: string;
   rounds: number;
   totalRounds: number;
 }

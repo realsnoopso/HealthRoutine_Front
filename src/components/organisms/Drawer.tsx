@@ -33,6 +33,7 @@ export default function Drawer(props: Drawer) {
             <DrawerList
               key={`${v.name}-${i}`}
               name={v.name}
+              id={v.id}
               rounds={v.rounds}
               totalRounds={v.totalRounds}
               _onClick={() => moveToRoutine(i, v.rounds)}

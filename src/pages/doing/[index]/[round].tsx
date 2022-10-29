@@ -2,33 +2,48 @@ import type { NextPage } from 'next';
 import Cycle from '@src/components/templates/Cycle';
 import NumberInput from '@src/components/molecules/NumberInput';
 import { css } from '@emotion/css';
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState } from 'react';
 import { workoutList } from '@src/constants/mockData';
 import { useRouter } from 'next/router';
 
 const Doing: NextPage = () => {
   const router = useRouter();
-  const { index, round } = router.query;
 
-  const name = workoutList[Number(index)]?.name;
-
-  const weightInput = useRef();
-  const countInput = useRef();
+  let index = Number(router.query.index)
+  let round = Number(router.query.round)
+  
+  const name = workoutList[index]?.name;
+  const id = workoutList[index]?.id;
 
   const [weight, setWeight] = useState('');
   const [count, setCount] = useState('');
+  
+  const weightInput = useRef();
+  const countInput = useRef();
 
   const isWorkoutFinished = (()=> {
-    const _round = Number(round);
-    const _index = Number(index);
-
-    if (_index === workoutList.length-1 && _round === workoutList[workoutList.length-1]['totalRounds'] ) {      
+    if (index === workoutList.length-1 && round === workoutList[workoutList.length-1]['totalRounds'] ) {      
       return true
     }
     return false
   })()
 
+  function SaveRecord () {
+    const record = {weight, count}
+    const getResult = window?.localStorage.getItem(id)
+    const pastResult = getResult && JSON.parse(getResult)
+    let newRecord;
+    if (pastResult) {
+      newRecord = [...pastResult, record]
+    } else {
+      newRecord = [record]
+    }
+    newRecord = JSON.stringify(newRecord)
+    window?.localStorage.setItem(id, newRecord)
+  }
+    
   function finishRoutine() {
+    SaveRecord()
     if (isWorkoutFinished) {
       return router.push(`/done`);
     }

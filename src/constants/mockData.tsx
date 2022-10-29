@@ -1,26 +1,41 @@
 export const workoutList = [
   {
-    id: '1',
+    id: 'hip_01',
     name: '힙 아브덕션 이너타이',
-    rounds: 3,
     totalRounds: 3,
   },
   {
-    id: '2',
+    id: 'hip_02',
     name: '힙 아브덕션 아웃타이',
-    rounds: 3,
     totalRounds: 3,
   },
   {
-    id: '3',
+    id: 'leg_01',
     name: '스쿼트',
-    rounds: 3,
     totalRounds: 3,
   },
   {
-    id: '4',
+    id: 'hip_01',
     name: '힙 쓰러스트',
-    rounds: 3,
     totalRounds: 3,
   },
 ];
+
+
+// 형식 참고
+export const records = [
+  {
+    hip_01:
+    [{
+      weight: 10,
+      count: 15,
+    },{
+      weight: 10,
+      count: 15,
+    },{
+      weight: 10,
+      count: 15,
+    }]
+  }
+];
+

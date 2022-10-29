@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
 import Cycle from '@src/components/templates/Cycle';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { resetData } from '@src/services/resetData';
 
 const Start: NextPage = () => {

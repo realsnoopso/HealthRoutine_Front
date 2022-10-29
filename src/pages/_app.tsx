@@ -5,7 +5,6 @@ import Head from 'next/head';
 import Navbar from '@src/components/organisms/Navbar';
 import Drawer from '@src/components/organisms/Drawer';
 import { useRouter } from 'next/router';
-import { css } from '@emotion/css';
 import { useState, useRef } from 'react';
 
 function MyApp({ Component, pageProps }: AppProps) {
