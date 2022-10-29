@@ -15,7 +15,7 @@ export const workoutList = [
     totalRounds: 3,
   },
   {
-    id: 'hip_02',
+    id: 'hip_03',
     name: '힙 쓰러스트',
     totalRounds: 3,
   },

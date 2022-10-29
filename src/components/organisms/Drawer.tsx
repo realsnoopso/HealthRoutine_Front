@@ -14,12 +14,11 @@ interface Drawer {
 export default function Drawer(props: Drawer) {
   const router = useRouter();
   const { open, backdropRef, drawerCloseFunc, closeFunc } = props;
-  function moveToRoutine(index: number, round: number) {
-    router.push(`/doing/${index}/${round}`);
+  
+  function moveToRoutine(id: string, round: number) {
+    router.push(`/doing/${id}/${round}`);
     closeFunc();
   }
-
-  
 
   if (open)
     return (
@@ -37,7 +36,7 @@ export default function Drawer(props: Drawer) {
               id={v.id}
               rounds={getRecordsLength(v.id)}
               totalRounds={v.totalRounds}
-              _onClick={() => moveToRoutine(i, getRecordsLength(v.id)+1)}
+              _onClick={() => moveToRoutine(v.id, getRecordsLength(v.id)+1)}
             />
           ))}
         </div>

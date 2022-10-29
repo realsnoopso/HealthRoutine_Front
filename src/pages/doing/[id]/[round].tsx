@@ -54,7 +54,7 @@ const Doing: NextPage = () => {
         label="무게 (kg)"
         type="weight"
         placeholder={0}
-        value={`${weight}`}
+        value={weight}
         setValue={setWeight}
         style={css`
           margin-top: 24px;
@@ -66,7 +66,7 @@ const Doing: NextPage = () => {
         label="횟수"
         type="count"
         placeholder={0}
-        value={`${count}`}
+        value={count}
         setValue={setCount}
       />
     </Cycle>
