@@ -7,30 +7,28 @@ import { useEffect, useState } from 'react';
 const Start: NextPage = () => {
   const router = useRouter();
 
-  const [index, setIndex] = useState(0);
+  const [id, setId] = useState('');
   const [round, setRound] = useState(1);  
 
   const getIndexAndRound = ()=> {
-    let _index = Number(window.localStorage.getItem('currIndex')) ?? 0;
-    let _round = Number(window.localStorage.getItem('currRound')) ?? 1;
-    return {_index, _round}
+    let _id = window.localStorage.getItem('currId') ?? workoutList[0].id
+    let _round = Number(window.localStorage.getItem('currRound'));
+    return {_id, _round}
   }
   
   useEffect(()=> {
-    const {_index, _round} = getIndexAndRound()
-    _index && setIndex(Number(window.localStorage.getItem('currIndex')));
-    _round && setRound(Number(window.localStorage.getItem('currRound')));
-
-    console.log(round);
+    const {_id, _round} = getIndexAndRound()
+    _id && setId(_id);
+    _round && setRound(_round);
   },[])
   
   function startNextRound() {
-    router.push(`/doing/${index}/${round}`);
+    router.push(`/doing/${id}/${round}`);
   }
 
   return (
     <Cycle btnIcon="play_arrow" _onClick={startNextRound}>
-      <h3>{workoutList[index]?.name}</h3>
+      <h3>{workoutList.find(v => v.id === id)?.name}</h3>
       <h1>{round}세트 시작</h1>
     </Cycle>
   );

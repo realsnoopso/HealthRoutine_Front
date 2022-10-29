@@ -5,8 +5,8 @@ import React, { useState } from 'react';
 
 interface NumberInput {
   type: 'weight' | 'count';
-  value: string;
-  setValue: (value: string) => void;
+  value: number;
+  setValue: (value: number) => void;
   label?: string;
   placeholder: number;
   style?: any;
@@ -16,12 +16,12 @@ const NumberInput = React.forwardRef((props: NumberInput, ref: any) => {
   const { label, value, setValue, style, type } = props;
 
   function addValue() {
-    setValue(`${Number(value) + typeProp()}`);
+    setValue(value + typeProp());
   }
 
   function subtractValue() {
     if (Number(value) > 0) {
-      setValue(`${Number(value) - typeProp()}`);
+      setValue(value - typeProp());
     }
   }
 
@@ -33,7 +33,7 @@ const NumberInput = React.forwardRef((props: NumberInput, ref: any) => {
   };
 
   function handleOnchange(e: React.ChangeEvent<HTMLInputElement>) {
-    setValue(e.target.value);
+    setValue(Number(e.target.value));
   }
 
   return (

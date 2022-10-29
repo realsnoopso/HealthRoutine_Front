@@ -2,53 +2,48 @@ import type { NextPage } from 'next';
 import Cycle from '@src/components/templates/Cycle';
 import NumberInput from '@src/components/molecules/NumberInput';
 import { css } from '@emotion/css';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { workoutList } from '@src/constants/mockData';
 import { useRouter } from 'next/router';
+import { unfinishedWorkoutRecords } from '@src/services/unfinishedWorkoutRecords';
+import { Record, Log } from '@src/types/Records';
 
 const Doing: NextPage = () => {
   const router = useRouter();
 
-  let index = Number(router.query.index)
+  let id = `${router.query.id}`
   let round = Number(router.query.round)
-  
-  const name = workoutList[index].name;
-  const id = workoutList[index].id;
+  let name = workoutList.find(v => v.id === id)?.name
 
-  const [weight, setWeight] = useState('');
-  const [count, setCount] = useState('');
+  const [weight, setWeight] = useState(0);
+  const [count, setCount] = useState(0);
   
   const weightInput = useRef();
   const countInput = useRef();
 
-  const isWorkoutFinished = (()=> {
-    if (index === workoutList.length-1 && round === workoutList[workoutList.length-1]['totalRounds'] ) {      
-      return true
-    }
-    return false
-  })()
-
-  function SaveRecord () {
-    const record = {weight, count}
-    const getResult = window?.localStorage.getItem(id)
-    const pastResult = getResult && JSON.parse(getResult)
-    let newRecord;
-    if (pastResult) {
-      newRecord = [...pastResult, record]
-    } else {
-      newRecord = [record]
-    }
-    newRecord = JSON.stringify(newRecord)
-    window?.localStorage.setItem(id, newRecord)
-  }
-    
   function finishRoutine() {
     SaveRecord()
-    if (isWorkoutFinished) {
+    if (unfinishedWorkoutRecords().length === 0) {
       return router.push(`/done`);
     }
-    router.push(`/rest/${index}/${round}`);
+    router.push(`/rest/${id}/${round}`);
   }
+
+  function SaveRecord() {
+    const log: Log = {weight, count}
+    let record: Record;
+
+    if (pastLogs) {
+      record = {round, logs: [...pastLogs, log]}
+    } else {
+      record = {round, logs: [log]}
+    }
+
+    window?.localStorage.setItem(id, JSON.stringify(record))
+  }
+
+  const getRecord = id && window?.localStorage.getItem(id)
+  const pastLogs = getRecord && JSON.parse(getRecord).logs
 
   return (
     <Cycle btnIcon="done" _onClick={finishRoutine}>
@@ -59,7 +54,7 @@ const Doing: NextPage = () => {
         label="무게 (kg)"
         type="weight"
         placeholder={0}
-        value={weight}
+        value={`${weight}`}
         setValue={setWeight}
         style={css`
           margin-top: 24px;
@@ -71,7 +66,7 @@ const Doing: NextPage = () => {
         label="횟수"
         type="count"
         placeholder={0}
-        value={count}
+        value={`${count}`}
         setValue={setCount}
       />
     </Cycle>

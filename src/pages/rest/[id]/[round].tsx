@@ -4,13 +4,14 @@ import { runSetCount, makeTimer } from '@src/services/makeTimer';
 import { workoutList } from '@src/constants/mockData';
 import { useRouter } from 'next/router';
 import Cycle from '@src/components/templates/Cycle';
-import { resourceLimits } from 'worker_threads';
+import { unfinishedWorkoutRecords } from '@src/services/unfinishedWorkoutRecords';
 
 const Rest: NextPage = () => {
   const [count, setCount] = useState(0);
   const router = useRouter();
   
   let index = Number(router.query.index)
+  let id = router.query.id
   let round = Number(router.query.round)
   const totalRounds = Number(workoutList[index]?.['totalRounds']);
   const actionButton: any = useRef();
@@ -28,18 +29,37 @@ const Rest: NextPage = () => {
   }
 
   function startNewRound() {
-    if (index >= workoutList.length) {
-      return router.push('/');
-    }
-    if (round >= workoutList[index].totalRounds) {
-      index = index + 1
+    if (isRoundFinished()) {
+      id = getNextRoundId()
       round = 1
     } else {
       round = round + 1
     }
-    window.localStorage.setItem('currIndex', `${index}`)
-    window.localStorage.setItem('currRound', `${round}`)
+    saveCurrIdAndRound()
     router.push('/start');
+  }
+
+  function getNextRoundId() {
+    const noRecordWorkouts = unfinishedWorkoutRecords().filter(v => v.round === 0);
+    if (noRecordWorkouts.length !== 0) {
+      return noRecordWorkouts[0].id
+    } else {
+      return unfinishedWorkoutRecords()[0].id
+    }
+  }
+
+  function isRoundFinished() {
+    const roundInfo = workoutList.find(v => v.id === id)
+    if (roundInfo && round >= roundInfo?.totalRounds) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  function saveCurrIdAndRound() {
+    window.localStorage.setItem('currId', `${id}`)
+    window.localStorage.setItem('currRound', `${round}`)
   }
 
   return (

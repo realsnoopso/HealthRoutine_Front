@@ -2,6 +2,7 @@ import { css } from '@emotion/css';
 import { useRouter } from 'next/router';
 import DrawerList from '@src/components/molecules/DrawerList';
 import { workoutList } from '@src/constants/mockData';
+import { getRecordsLength } from '@src/services/getRecordsLength';
 
 interface Drawer {
   open: boolean;
@@ -17,15 +18,8 @@ export default function Drawer(props: Drawer) {
     router.push(`/doing/${index}/${round}`);
     closeFunc();
   }
-  function getRecordsLength(id:string) {
-    const record = window.localStorage.getItem(id)
-    console.log(record)
-    if (record) {
-      return JSON.parse(record).length
-    } else {
-      return 0
-    }
-  }
+
+  
 
   if (open)
     return (
