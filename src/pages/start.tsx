@@ -11,8 +11,8 @@ const Start: NextPage = () => {
   const [round, setRound] = useState(1);  
 
   const getIndexAndRound = ()=> {
-    let _id = window.localStorage.getItem('currId') ?? workoutList[0].id
-    let _round = Number(window.localStorage.getItem('currRound'));
+    let _id = window?.localStorage.getItem('currId') ?? workoutList[0].id
+    let _round = Number(window?.localStorage.getItem('currRound'));
     return {_id, _round}
   }
   

@@ -1,5 +1,4 @@
 import { workoutList } from "@src/constants/mockData"
-import {  Record, Log } from "@src/types/Records"
 
 function getRound(id:string) {
   const record =  window?.localStorage.getItem(id)

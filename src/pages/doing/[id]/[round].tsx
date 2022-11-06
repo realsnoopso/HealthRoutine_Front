@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from 'react';
 import { workoutList } from '@src/constants/mockData';
 import { useRouter } from 'next/router';
 import { unfinishedWorkoutRecords } from '@src/services/unfinishedWorkoutRecords';
-import { Record, Log } from '@src/types/Records';
+import { Record, Log } from '@src/types/records';
 
 const Doing: NextPage = () => {
   const router = useRouter();

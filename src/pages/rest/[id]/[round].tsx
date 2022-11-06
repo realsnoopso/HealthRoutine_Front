@@ -58,8 +58,8 @@ const Rest: NextPage = () => {
   }
 
   function saveCurrIdAndRound() {
-    window.localStorage.setItem('currId', `${id}`)
-    window.localStorage.setItem('currRound', `${round}`)
+    window?.localStorage.setItem('currId', `${id}`)
+    window?.localStorage.setItem('currRound', `${round}`)
   }
 
   return (
