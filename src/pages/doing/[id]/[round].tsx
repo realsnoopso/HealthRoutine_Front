@@ -7,22 +7,23 @@ import { workoutList } from '@src/constants/mockData';
 import { useRouter } from 'next/router';
 import { unfinishedWorkoutRecords } from '@src/services/unfinishedWorkoutRecords';
 import { Record, Log } from '@src/types/records';
+import { setRecord } from '@src/apis/records';
 
 const Doing: NextPage = () => {
   const router = useRouter();
 
-  let id = `${router.query.id}`
-  let round = Number(router.query.round)
-  let name = workoutList.find(v => v.id === id)?.name
+  let id = `${router.query.id}`;
+  let round = Number(router.query.round);
+  let name = workoutList.find((v) => v.id === id)?.name;
 
   const [weight, setWeight] = useState(0);
   const [count, setCount] = useState(0);
-  
+
   const weightInput = useRef();
   const countInput = useRef();
 
   function finishRoutine() {
-    SaveRecord()
+    SaveRecord();
     if (unfinishedWorkoutRecords().length === 0) {
       return router.push(`/done`);
     }
@@ -30,20 +31,21 @@ const Doing: NextPage = () => {
   }
 
   function SaveRecord() {
-    const log: Log = {weight, count}
+    const log: Log = { weight, count };
     let record: Record;
 
     if (pastLogs) {
-      record = {round, logs: [...pastLogs, log]}
+      record = { round, logs: [...pastLogs, log] };
     } else {
-      record = {round, logs: [log]}
+      record = { round, logs: [log] };
     }
 
-    window?.localStorage.setItem(id, JSON.stringify(record))
+    setRecord(id, record);
+    // window?.localStorage.setItem(id, JSON.stringify(record));
   }
 
-  const getRecord = id && window?.localStorage.getItem(id)
-  const pastLogs = getRecord && JSON.parse(getRecord).logs
+  const getRecord = id && window?.localStorage.getItem(id);
+  const pastLogs = getRecord && JSON.parse(getRecord).logs;
 
   return (
     <Cycle btnIcon="done" _onClick={finishRoutine}>
