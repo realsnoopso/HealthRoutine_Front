@@ -1,15 +1,11 @@
 import { Record } from '@src/types/records';
 
-import Api from './apis';
+import { fetchData } from './index';
 
 export function getRecords(id: string) {
-  return Api.get<Record[]>(`/records?id=${id}`);
+  return fetchData(`/records?id=${id}`, { method: 'get' });
 }
 
 export async function setRecords(id: string, record: Record) {
-  try {
-    await Api.post(`/records?id=${id}`, record);
-  } catch (err) {
-    console.log(err);
-  }
+  return fetchData(`/records?id=${id}`, { method: 'post', data: record });
 }

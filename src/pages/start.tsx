@@ -3,24 +3,37 @@ import Cycle from '@src/components/templates/Cycle';
 import { workoutList } from '@src/constants/mockData';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+import { getRoutines } from '@src/apis/routines';
+import { fetchData, useFetch } from '@src/apis';
 
 const Start: NextPage = () => {
   const router = useRouter();
 
   const [id, setId] = useState('');
-  const [round, setRound] = useState(1);
+  const [name, setName] = useState('');
+  const [round, setRound] = useState(0);
+
+  const data = useFetch(getRoutines);
+
+  function getIndexAndRound() {
+    const currentRoutine = window.localStorage.getItem('current');
+    const { id, name } = currentRoutine
+      ? JSON.parse(currentRoutine)
+      : data
+      ? data[0]
+      : { id: '', name: '' };
+    const currentRound = window.localStorage.getItem('current-rounds')
+      ? Number(window.localStorage.getItem('current-round'))
+      : 1;
+    return { _id: id, _name: name, _round: currentRound };
+  }
 
   useEffect(() => {
-    const { _id, _round } = getIndexAndRound();
-    _id && setId(_id);
-    _round && setRound(_round);
-  }, []);
-
-  const getIndexAndRound = () => {
-    let _id = window?.localStorage.getItem('currId') ?? workoutList[0].id;
-    let _round = Number(window?.localStorage.getItem('currRound'));
-    return { _id, _round };
-  };
+    const { _id, _name, _round } = getIndexAndRound();
+    setId(_id);
+    setName(_name);
+    setRound(_round);
+  }, [data]);
 
   function startNextRound() {
     router.push(`/doing/${id}/${round}`);
@@ -28,7 +41,7 @@ const Start: NextPage = () => {
 
   return (
     <Cycle btnIcon="play_arrow" _onClick={startNextRound}>
-      <h3>{workoutList.find((v) => v.id === id)?.name}</h3>
+      <h3>{name}</h3>
       <h1>{round}세트 시작</h1>
     </Cycle>
   );
