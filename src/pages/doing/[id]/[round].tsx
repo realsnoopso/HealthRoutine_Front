@@ -6,8 +6,8 @@ import { useEffect, useRef, useState } from 'react';
 import { workoutList } from '@src/constants/mockData';
 import { useRouter } from 'next/router';
 import { unfinishedWorkoutRecords } from '@src/services/unfinishedWorkoutRecords';
-import { Record, Log } from '@src/types/records';
-import { setRecord } from '@src/apis/records';
+import { Record } from '@src/types/records';
+import { setRecords } from '@src/apis/records';
 
 const Doing: NextPage = () => {
   const router = useRouter();
@@ -23,25 +23,16 @@ const Doing: NextPage = () => {
   const countInput = useRef();
 
   function finishRoutine() {
-    SaveRecord();
+    saveRecord();
     if (unfinishedWorkoutRecords().length === 0) {
       return router.push(`/done`);
     }
     router.push(`/rest/${id}/${round}`);
   }
 
-  function SaveRecord() {
-    const log: Log = { weight, count };
-    let record: Record;
-
-    if (pastLogs) {
-      record = { round, logs: [...pastLogs, log] };
-    } else {
-      record = { round, logs: [log] };
-    }
-
-    setRecord(id, record);
-    // window?.localStorage.setItem(id, JSON.stringify(record));
+  async function saveRecord() {
+    const record: Record = { weight, count };
+    await setRecords(id, record);
   }
 
   const getRecord = id && window?.localStorage.getItem(id);
