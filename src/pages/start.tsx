@@ -5,35 +5,39 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { getRoutines } from '@src/apis/routines';
 import { fetchData, useFetch } from '@src/apis';
+import { Routines } from '@src/types/routines';
 
 const Start: NextPage = () => {
   const router = useRouter();
-
   const [id, setId] = useState('');
   const [name, setName] = useState('');
   const [round, setRound] = useState(0);
 
-  const data = useFetch(getRoutines);
-
-  function getIndexAndRound() {
-    const currentRoutine = window.localStorage.getItem('current');
-    const { id, name } = currentRoutine
-      ? JSON.parse(currentRoutine)
-      : data
-      ? data[0]
-      : { id: '', name: '' };
-    const currentRound = window.localStorage.getItem('current-rounds')
+  function getCurrnetIndexAndRound(routineList: any) {
+    const current = { id: '', round: 1, name: '' };
+    current.id =
+      window.localStorage.getItem('current-id') ??
+      routineList?.[0].id ??
+      current.id;
+    current.round = window.localStorage.getItem('current-rounds')
       ? Number(window.localStorage.getItem('current-round'))
-      : 1;
-    return { _id: id, _name: name, _round: currentRound };
+      : current.round;
+    current.name =
+      routineList?.find((v: Routines) => v.id === current.id)?.name ??
+      current.name;
+    return current;
   }
 
   useEffect(() => {
-    const { _id, _name, _round } = getIndexAndRound();
-    setId(_id);
-    setName(_name);
-    setRound(_round);
-  }, [data]);
+    async function fetch() {
+      const routines = await getRoutines();
+      const current = getCurrnetIndexAndRound(routines);
+      setId(current.id);
+      setName(current.name);
+      setRound(current.round);
+    }
+    fetch();
+  }, []);
 
   function startNextRound() {
     router.push(`/doing/${id}/${round}`);

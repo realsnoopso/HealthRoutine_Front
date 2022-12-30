@@ -6,6 +6,13 @@ import Navbar from '@src/components/organisms/Navbar';
 import Drawer from '@src/components/organisms/Drawer';
 import { useRouter } from 'next/router';
 import { useState, useRef } from 'react';
+import {
+  RecoilRoot,
+  atom,
+  selector,
+  useRecoilState,
+  useRecoilValue,
+} from 'recoil';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const { asPath } = useRouter();
@@ -21,7 +28,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   }
 
   return (
-    <>
+    <RecoilRoot>
       <Global styles={globalStyles} />
       <Head>
         <link
@@ -43,7 +50,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         closeFunc={closeDrawer}
       />
       <Component {...pageProps} />
-    </>
+    </RecoilRoot>
   );
 }
 

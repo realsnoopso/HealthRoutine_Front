@@ -1,4 +1,5 @@
 export interface Routines {
-  name: number;
+  name: string;
   totalrounds: number;
+  id: string;
 }

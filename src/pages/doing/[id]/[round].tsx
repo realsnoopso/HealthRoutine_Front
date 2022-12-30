@@ -2,7 +2,7 @@ import type { NextPage } from 'next';
 import Cycle from '@src/components/templates/Cycle';
 import NumberInput from '@src/components/molecules/NumberInput';
 import { css } from '@emotion/css';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { workoutList } from '@src/constants/mockData';
 import { useRouter } from 'next/router';
 import { unfinishedWorkoutRecords } from '@src/services/unfinishedWorkoutRecords';

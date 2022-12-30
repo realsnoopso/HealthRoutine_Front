@@ -16,7 +16,7 @@ export function fetchData(url: string, config: AxiosRequestConfig) {
 
 type FetchFunc = (props?: any) => Promise<any>;
 
-export function useFetch(func: FetchFunc, props?: any) {
+export function useFetch(func: FetchFunc, props?: any): any {
   const [response, setResponse] = useState(null);
   useEffect(() => {
     async function fetch() {
